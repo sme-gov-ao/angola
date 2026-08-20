@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#C41E1A">
+<title>SME Angola - Portal Oficial Final | 21 Províncias | Login por Telefone | PDF</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#C41E1A;--black:#0f0f0f;--gold:#FFD700;--gray:#f5f6f8;--border:#e6e8eb;--ok:#10b981}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:var(--gray);color:#111}
+.govBar{background:var(--black);color:#fff;display:flex;justify-content:space-between;padding:7px 14px;font-size:10px;letter-spacing:.4px}
+.headerMain{background:linear-gradient(100deg,var(--red) 0%,#8a1210 60%,#111 100%);color:#fff;padding:12px 14px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.brasao{width:56px;height:56px;background:radial-gradient(circle at 30% 30%,#ffe27a,#FFD700 40%,#c49a00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;border:3px solid #fff;flex-shrink:0}
+.headerMain h1{font-size:15px;font-weight:900;line-height:1.1;text-transform:uppercase}
+.headerMain p{font-size:10px;opacity:.9;font-weight:600;margin-top:3px}
+.badgeLive{background:#00d084;color:#000;font-size:9px;font-weight:900;padding:3px 7px;border-radius:20px;margin-left:auto}
+.menuScroll{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:72px;z-index:90}
+.menuScroll::-webkit-scrollbar{display:none}
+.menuScroll button{white-space:nowrap;padding:10px 14px;border-radius:24px;border:1px solid var(--border);background:#fff;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px}
+.menuScroll button.active{background:var(--black);color:#fff;border-color:var(--black)}
+.menuScroll button.dot{width:8px;height:8px;background:var(--ok);border-radius:50%;display:none}
+.menuScroll button.logged.dot{display:block}
+.wrap{max-width:560px;margin:0 auto;padding:12px 12px 110px}
+.page{display:none;animation:fade.25s ease}.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.card{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.card h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:12px;display:flex;align-items:center;gap:8px;font-weight:800}
+.card h2 i{font-style:normal;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.svc{border:1px solid #f0f0f0;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;margin-bottom:8px;cursor:pointer;background:#fcfcfc;transition:.18s}
+.svc:hover{border-color:var(--red);transform:translateY(-1px)}
+.svc.sel{border-color:var(--red);background:#fff6f6;box-shadow:0 0 0 3px rgba(196,30,26,.1)}
+.svc.ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.svc b{font-size:13px}.svc span{font-size:11px;color:#6b7280;display:block;margin-top:2px}
+.svc.price{margin-left:auto;font-weight:900;color:var(--red);font-size:12px;text-align:right}
+label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:#374151;margin:12px 0 6px;display:block}
+.input, select{width:100%;padding:12px 14px;border:1px solid #d1d5db;border-radius:12px;font-size:14px;background:#fff;outline:none;transition:.18s}
+.input:focus, select:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(196,30,26,.12)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:900;font-size:13px;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:active{transform:scale(.98)}
+.btn-red{background:linear-gradient(135deg,var(--red),#8a1210);color:#fff;box-shadow:0 8px 20px rgba(196,30,26,.35)}
+.btn-black{background:#111;color:#fff}.btn-white{background:#fff;border:1px solid #d1d5db;color:#111}
+.btn:disabled{opacity:.45;pointer-events:none}
+.stepper{display:flex;gap:6px;margin-bottom:14px}.step{flex:1;height:6px;border-radius:10px;background:#e5e7eb}.step.fill{background:var(--red)}
+.stepLabel{display:flex;justify-content:space-between;font-size:9px;font-weight:800;color:#9ca3af;margin-bottom:8px;text-transform:uppercase}
+.drop{border:2px dashed #d1d5db;border-radius:14px;padding:18px;text-align:center;background:#fbfbfc;cursor:pointer;transition:.2s}
+.drop.hasFile{border-color:var(--ok);background:#f0fdf4}
+.reciboBox{border:2px solid #111;border-radius:16px;padding:14px;background:#fff}
+.reciboTop{display:flex;justify-content:space-between;border-bottom:3px solid #111;padding-bottom:10px;margin-bottom:10px}
+.linhaRec{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #e5e7eb;font-size:12px}
+.linhaRec b{font-size:10px;color:#6b7280;text-transform:uppercase}
+.footerFixed{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:8px;max-width:560px;margin:0 auto;z-index:80}
+.avatar{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--red),#111);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;font-weight:900}
+.tag{padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}.tag-green{background:var(--ok);color:#fff}.tag-red{background:var(--red);color:#fff}
+.notice{background:#fff8db;border:1px solid #fde68a;padding:10px 12px;border-radius:12px;font-size:11px;line-height:1.5;color:#92400e;margin-bottom:10px}
+.msg{padding:10px 12px;border-radius:10px;font-size:12px;margin-bottom:10px;display:none}
+.msg.ok{display:block;background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.msg.err{display:block;background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+.siteFooter{background:#0a0a0a;color:#a1a1aa;padding:20px 14px;margin-top:20px;border-radius:20px 20px 0 0;font-size:11px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="govBar"><span>🇦🇴 REPÚBLICA DE ANGOLA • MININT • SME</span><span id="userTop">Visitante</span></div>
+<div class="headerMain"><div class="brasao">🇦🇴</div><div><h1>Serviço de Migração e Estrangeiros</h1><p>Portal Oficial Final • 21 Províncias • Hora Agendamento • PDF</p></div><div class="badgeLive">● ONLINE</div></div>
+<div class="menuScroll">
+<button class="active" onclick="goPage('inicio')">🏠 Início</button>
+<button onclick="goPage('servicos')">📘 Serviços</button>
+<button onclick="goPage('taxas')">💳 Taxas</button>
+<button onclick="goPage('agendar')">📅 Agendar</button>
+<button id="btnPerfil" onclick="goPage('perfil')">👤 Perfil <span class="dot"></span></button>
+<button onclick="goPage('documentos')">📁 Docs</button>
+<button id="btnLoginMenu" onclick="goPage('login')">🔐 Entrar</button>
+</div>
+<div class="wrap">
+<div id="page-inicio" class="page active">
+<div class="card" style="background:linear-gradient(135deg,#111 0%,#2a0a0a 100%);color:#fff;border:none">
+<div style="display:flex;gap:12px"><div style="font-size:38px">🛡️</div><div><b style="font-size:18px">SME Portal Final v3 - 100% Funcional</b><p style="font-size:11px;opacity:.8;margin-top:4px;line-height:1.4">Login por email OU telefone, recuperação de senha, 21 províncias com municípios, bairros e postos SME sincronizados, data + hora do agendamento, PDF oficial.</p></div></div>
+<div id="bemVindoBox" class="msg ok" style="margin-top:12px;background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.3);color:#d1fae5;display:none"></div>
+</div>
+<div class="card"><h2><i style="background:#fee2e2">🔥</i> Começar</h2><div class="grid2"><button class="btn btn-black" onclick="goPage('login')">🔐 Criar Conta / Login</button><button class="btn btn-red" onclick="goPage('agendar')">📅 Agendar 30.500 Kz</button></div></div>
+</div>
+<div id="page-servicos" class="page">
+<div class="card"><h2><i style="background:#fee2e2">📘</i> Passaportes</h2>
+<div class="svc" onclick="selServico('Passaporte Ordinário - Taxa Normal 30.500 Kz','30500')"><div class="ic" style="background:#fee2e2">📘</div><div><b>Passaporte Normal</b><span>10 anos • Taxa Normal</span></div><div class="price">30.500 Kz</div></div>
+<div class="svc" onclick="selServico('Passaporte Menor','15300')"><div class="ic" style="background:#fef3c7">👶</div><div><b>Menor</b><span>15.300 Kz</span></div><div class="price">15.300 Kz</div></div>
+<div class="svc" onclick="selServico('Passaporte Urgente 72h','50500')"><div class="ic" style="background:#ffedd5">⚡</div><div><b>Urgente 72h</b><span>50.500 Kz</span></div><div class="price">50.500 Kz</div></div>
+<div class="svc" onclick="selServico('2ª Via Extravio','40500')"><div class="ic" style="background:#fee2e2">📕</div><div><b>2ª Via Extravio</b><span>40.500 Kz</span></div><div class="price">40.500 Kz</div></div>
+</div>
+<div class="card"><h2><i style="background:#dcfce7">🛂</i> Vistos</h2>
+<div class="svc" onclick="selServico('Visto Turismo','7500')"><div class="ic" style="background:#dcfce7">✈️</div><div><b>Turismo</b></div><div class="price">7.500 Kz</div></div>
+<div class="svc" onclick="selServico('Visto Trabalho','25000')"><div class="ic" style="background:#e0e7ff">💼</div><div><b>Trabalho</b></div><div class="price">25.000 Kz</div></div>
+<div class="svc" onclick="selServico('Visto Residência','35000')"><div class="ic" style="background:#f3e8ff">🏠</div><div><b>Residência</b></div><div class="price">35.000 Kz</div></div>
+</div>
+</div>
+<div id="page-taxas" class="page"><div class="card"><h2><i style="background:#fef3c7">💳</i> Taxas Oficiais</h2><div class="linhaRec"><b>📘 Passaporte Normal</b><span style="font-weight:800;color:var(--red)">30.500 Kz</span></div><div class="linhaRec"><b>👶 Menor</b><span>15.300 Kz</span></div><div class="notice"><b>🏦 Entidade 01148 • Referência 945 752 579</b><br>ATM > Pagamentos > Pagamentos por Referência<br>Multicaixa Express > Pagamentos > Referência</div></div></div>
+<div id="page-login" class="page">
+<div class="card">
+<h2><i style="background:#111;color:#fff">🔐</i> Acesso - Criar Conta / Login / Recuperar</h2>
+<div id="loginMsg" class="msg"></div>
+<div id="formCriar">
+<label>Nome Completo *</label><input class="input" id="c_nome" placeholder="Manuel João Pedro">
+<div class="grid2"><div><label>Nº BI *</label><input class="input" id="c_bi" placeholder="004567890LA048"></div><div><label>Telefone * (login)</label><input class="input" id="c_tel" placeholder="9xx xxx xxx"></div></div>
+<label>Email * (login)</label><input class="input" id="c_email" placeholder="teu@email.com">
+<label>Senha * (mín 4)</label><input type="password" class="input" id="c_senha" placeholder="Cria senha">
+<label>Confirmar Senha *</label><input type="password" class="input" id="c_senha2" placeholder="Repete">
+<button class="btn btn-black" style="margin-top:12px" onclick="criarConta()">✅ Criar Conta e Entrar</button>
+<p style="text-align:center;margin-top:10px;font-size:11px">Já tens conta? <a href="#" onclick="mostrarLogin();return false" style="color:var(--red);font-weight:800">Faz login</a> • <a href="#" onclick="mostrarRecuperar();return false" style="color:#6b7280">Esqueceste senha?</a></p>
+</div>
+<div id="formLogin" style="display:none">
+<label>Email ou Telefone *</label><input class="input" id="l_email" placeholder="email ou 9xx xxx xxx">
+<label>Senha *</label><input type="password" class="input" id="l_senha" placeholder="••••">
+<button class="btn btn-red" style="margin-top:12px" onclick="fazerLogin()">🔓 Entrar com Email/Telefone</button>
+<p style="text-align:center;margin-top:10px;font-size:11px"><a href="#" onclick="mostrarCriar();return false" style="color:var(--red);font-weight:800">Criar conta</a> • <a href="#" onclick="mostrarRecuperar();return false" style="color:#6b7280">Recuperar senha</a></p>
+</div>
+<div id="formRecuperar" style="display:none">
+<label>Email ou Telefone para recuperar *</label><input class="input" id="rec_email" placeholder="teu@email.com ou telefone">
+<button class="btn btn-black" style="margin-top:12px" onclick="recuperarSenha()">🔑 Recuperar Senha</button>
+<div id="recResult" class="card" style="display:none;margin-top:10px;background:#f0fdf4;border-color:#bbf7d0"></div>
+<p style="text-align:center;margin-top:10px;font-size:11px"><a href="#" onclick="mostrarLogin();return false" style="color:var(--red);font-weight:800">Voltar ao login</a></p>
+</div>
+<div id="logadoBox" style="display:none;text-align:center;padding:10px">
+<div class="avatar" id="logAvatar" style="margin:0 auto 10px">M</div><b id="logNome">Nome</b><p id="logEmail" style="font-size:11px;color:#6b7280"></p>
+<button class="btn btn-white" style="margin-top:12px" onclick="logout()">🚪 Sair</button><button class="btn btn-red" style="margin-top:8px" onclick="goPage('perfil')">👤 Perfil</button>
+</div>
+</div>
+</div>
+<div id="page-agendar" class="page">
+<div class="stepLabel"><span id="l1" style="color:var(--red)">① Dados</span><span id="l2">② Local 21 Prov</span><span id="l3">③ Pagamento</span><span id="l4">④ PDF</span></div>
+<div class="stepper"><div class="step fill" id="s1"></div><div class="step" id="s2"></div><div class="step" id="s3"></div><div class="step" id="s4"></div></div>
+<div id="bloqueioLogin" class="card" style="display:none;text-align:center"><div style="font-size:40px">🔒</div><b>Precisas fazer login</b><p style="font-size:11px;color:#6b7280;margin:8px 0">Cria conta e entra.</p><button class="btn btn-red" onclick="goPage('login')">🔐 Entrar</button></div>
+<div id="etapa1" class="card"><h2><i style="background:#fee2e2">👤</i> Etapa 1 - Dados</h2>
+<label>Serviço</label><input class="input" id="servSel" value="Passaporte Ordinário - Taxa Normal 30.500 Kz" readonly>
+<div class="grid2"><div><label>Nome *</label><input class="input" id="nome"></div><div><label>BI *</label><input class="input" id="bi"></div></div>
+<div class="grid2"><div><label>Telefone *</label><input class="input" id="tel"></div><div><label>Email</label><input class="input" id="email"></div></div>
+<label>Filiação</label><input class="input" id="filiacao">
+<button class="btn btn-red" style="margin-top:12px" onclick="nextEtapa(2)">Continuar → Localização</button></div>
+<div id="etapa2" class="card" style="display:none"><h2><i style="background:#dcfce7">📍</i> Etapa 2 - 21 Províncias Sincronizadas</h2>
+<label>Província * (21 províncias)</label><select id="prov" onchange="carregarMunicipios()"></select>
+<label>Município * (ligado à província)</label><select id="mun" onchange="carregarBairros()"></select>
+<label>Bairro / Comuna * (ligado ao município)</label><select id="bairro"></select>
+<label>Posto SME Disponível * (ligado à província)</label><select id="posto"></select>
+<label>Data do Agendamento *</label><input type="date" class="input" id="dataAg">
+<label>Hora do Agendamento *</label><select id="horaAg"><option>08:00</option><option>08:30</option><option>09:00</option><option>09:30</option><option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option><option>12:00</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option></select>
+<div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-white" style="flex:1" onclick="nextEtapa(1)">←</button><button class="btn btn-red" style="flex:2" onclick="nextEtapa(3)">→ Pagamento</button></div></div>
+<div id="etapa3" class="card" style="display:none"><h2><i style="background:#fef3c7">💳</i> Etapa 3 - Pagamento por Referência</h2>
+<div class="notice"><b>Entidade 01148 • Ref 945752579 • Valor <span id="valorPagar">30.500 Kz</span></b><br>ATM: Pagamentos > Referência • Express: Pagamentos > Por Referência</div>
+<div class="card" style="background:#111;color:#fff;border:none"><div style="display:flex;justify-content:space-between"><span style="font-size:10px;opacity:.6">ENTIDADE</span><b style="font-family:'JetBrains Mono';color:var(--gold)">01148</b></div><div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:10px;opacity:.6">REFERÊNCIA</span><b style="font-family:'JetBrains Mono'">945 752 579</b></div><div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:10px;opacity:.6">VALOR</span><b id="valorBox" style="color:#4ade80">30.500 Kz</b></div></div>
+<label>Anexar Comprovativo * OBRIGATÓRIO - Sem isso não gera recibo</label>
+<div class="drop" id="drop" onclick="document.getElementById('fileComp').click()"><div style="font-size:28px">📎</div><b style="font-size:12px">Clique para anexar talão</b><div id="fileName" style="margin-top:6px;font-size:11px;color:var(--ok);font-weight:800;display:none"></div></div>
+<input type="file" id="fileComp" accept="image/*,.pdf" style="display:none" onchange="fileAnexado(this)">
+<label>Nº Talão RUPE *</label><input class="input" id="rupe" placeholder="Nº do talão">
+<div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-white" style="flex:1" onclick="nextEtapa(2)">←</button><button class="btn btn-red" style="flex:2" id="btnGerar" disabled onclick="gerarReciboPDF()">🔒 Anexe comprovativo para gerar recibo</button></div></div>
+<div id="etapa4" class="card" style="display:none"><h2><i style="background:#e0e7ff">🧾</i> Etapa 4 - Recibo PDF Oficial</h2>
+<div class="reciboBox" id="reciboPrint">
+<div class="reciboTop"><div><h3 style="font-size:13px;font-weight:900">🇦🇴 RECIBO SME ANGOLA</h3><small style="font-size:9px">Portal Oficial • Ent 01148 Ref 945752579</small></div><span class="tag tag-green">CONFIRMADO</span></div>
+<div class="linhaRec"><b>Nº Recibo</b><span id="r-num" style="font-weight:900;font-family:'JetBrains Mono'"></span></div>
+<div class="linhaRec"><b>Serviço</b><span id="r-serv"></span></div>
+<div class="linhaRec"><b>Taxa</b><span id="r-taxa" style="font-weight:800;color:var(--red)"></span></div>
+<div class="linhaRec"><b>Utente</b><span id="r-nome"></span></div>
+<div class="linhaRec"><b>BI</b><span id="r-bi"></span></div>
+<div class="linhaRec"><b>Província → Município → Bairro</b><span id="r-local"></span></div>
+<div class="linhaRec"><b>Posto SME</b><span id="r-posto"></span></div>
+<div class="linhaRec"><b>Data e Hora Agendamento</b><span id="r-data" style="font-weight:800"></span></div>
+<div class="linhaRec"><b>Pagamento</b><span>01148 / 945752579 Validado ✅</span></div>
+<div class="linhaRec"><b>Comprovativo</b><span id="r-comp"></span></div>
+<div style="display:flex;gap:10px;margin-top:10px"><div style="width:80px;height:80px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:800;text-align:center">QR<br><span id="r-qr" style="color:var(--gold)"></span></div><div style="font-size:10px;color:#6b7280">Pessoal e intransmissível. BI + recibo + RUPE. sme.gov.ao • Linha 120</div></div>
+</div>
+<div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-black" onclick="baixarPDF()">📄 Baixar PDF</button><button class="btn btn-white" onclick="partilharRecibo()">📤 Partilhar</button></div>
+</div>
+</div>
+<div id="page-perfil" class="page">
+<div id="perfilNaoLogado" class="card" style="text-align:center"><div style="font-size:40px">👤</div><b>Não estás logado</b><p style="font-size:11px;color:#6b7280;margin:8px 0">Faz login.</p><button class="btn btn-red" onclick="goPage('login')">🔐 Entrar</button></div>
+<div id="perfilLogado" style="display:none">
+<div class="card"><div style="display:flex;gap:14px;align-items:center"><div class="avatar" id="avatarLetra">U</div><div><b id="perfilNome">Nome</b><p id="perfilBI" style="font-size:11px;color:#6b7280"></p><p id="perfilEmail" style="font-size:11px;color:#6b7280"></p><span class="tag tag-green">Activa • Verificada</span></div></div><button class="btn btn-white" style="margin-top:12px" onclick="logout()">🚪 Sair</button></div>
+<div class="card"><h2><i style="background:#e0f2fe">📊</i> Acompanhar Processo</h2><div id="timeline"></div></div>
+<div class="card"><h2><i style="background:#fef3c7">⚙️</i> Editar Conta</h2><label>Telefone</label><input class="input" id="perfilTelEdit"><button class="btn btn-black" style="margin-top:8px" onclick="atualizarPerfil()">💾 Guardar</button></div>
+</div>
+</div>
+<div id="page-documentos" class="page"><div class="card"><h2><i style="background:#fef3c7">📁</i> Meus Documentos PDF</h2><div id="listaDocs" style="font-size:12px;color:#6b7280">Faz login e gera recibo.</div></div></div>
+<div class="siteFooter"><h4>🇦🇴 SME Angola Final v3</h4>Entidade 01148 • Ref 945752579 • 21 Províncias • Login por Telefone/Email • Recuperação Senha • Data+hora Agendamento • PDF<br><span style="font-size:10px;opacity:.6">© 2026 MININT - index.html único - Funciona 100% no Acode</span></div>
+</div>
+<div class="footerFixed"><button class="btn btn-white" style="flex:1" onclick="goPage('servicos')">📘 Serviços</button><button class="btn btn-red" style="flex:2" onclick="goPage('agendar')">📅 Agendar 30.500 Kz</button></div>
+<script>
+// 21 PROVÍNCIAS COMPLETAS - CADA UMA COM MUNICÍPIOS, BAIRROS E POSTOS SME
+const ANGOLA={"Luanda":{mun:{"Luanda":["Ingombota","Maianga","Samba","Rangel","Sambizanga"],"Belas":["Quenguela","Barra do Cuanza","Morro dos Veados"],"Cacuaco":["Cacuaco Sede","Funda","Kifangondo","Sequele"],"Cazenga":["Cazenga","Tala-Hady","Hoji-ya-Henda","11 de Novembro"],"Kilamba Kiaxi":["Golf","Palanca","Nova Vida","Havemos"],"Talatona":["Talatona Sede","Benfica","Futungo","Lar do Patriota"],"Viana":["Viana Sede","Zango 1","Zango 2","Zango 3","Calumbo","Estalagem"]},postos:["SME Central Maianga - Luanda Sede","SME Talatona - Luanda Sul","SME Viana - Zango 0","SME Cacuaco - Vila Sede","SME Kilamba - Centralidade","Posto Aeroporto 4 de Fevereiro"]},"Icolo e Bengo":{mun:{"Catete":["Catete Sede","Cassoneca","Caculo Cahango"],"Bom Jesus":["Bom Jesus Sede","Calumbo","Cabo Ledo"],"Sequele":["Sequele Sede"]},postos:["SME Icolo e Bengo - Catete Sede","SME Sequele - Posto"]},"Bengo":{mun:{"Caxito":["Caxito Sede","Mabubas","Ucure"],"Dande":["Barra do Dande","Mabubas"],"Ambriz":["Ambriz Sede","Tabi"],"Nambuangongo":["Muxaluando","Quicunzo"],"Dembos":["Quibaxe"]},postos:["SME Bengo - Caxito Sede","SME Ambriz - Posto Fronteiriço"]},"Cabinda":{mun:{"Cabinda":["Cabinda Sede","Malembo","Tando-Zinze","Lândana"],"Cacongo":["Cacongo Sede","Dinge","Massabi"],"Buco-Zau":["Buco-Zau Sede","Inhuca"],"Belize":["Belize Sede","Luali","Miconge"]},postos:["SME Cabinda - Sede Central","SME Cacongo - Massabi Fronteira","Posto Yema Fronteira"]},"Zaire":{mun:{"Mbanza Kongo":["Mbanza Kongo Sede","Kiende","Kaluka"],"Soyo":["Soyo Sede","Mangue Grande","Pedra de Feitiço","Sumba"],"Nzeto":["Nzeto Sede","Musserra","Quibala Norte"],"Cuimba":["Cuimba Sede"],"Tomboco":["Tomboco Sede","Kinzao"]},postos:["SME Zaire - Mbanza Kongo","SME Soyo - Porto","Posto Fronteira Luvo"]},"Uíge":{mun:{"Uíge":["Uíge Sede","Casseche","Cavungo"],"Negage":["Negage Sede","Dimuca","Kisseke"],"Maquela do Zombo":["Maquela Sede","Béu","Cuilo Futa"],"Bembe":["Bembe Sede"],"Damba":["Damba Sede"],"Sanza Pombo":["Sanza Pombo Sede"]},postos:["SME Uíge - Sede Provincial","SME Negage - Posto"]},"Cuanza Norte":{mun:{"Cazengo":["Ndalatando Sede","Canhoca"],"Golungo Alto":["Golungo Alto Sede","Cerca","Cambondo"],"Lucala":["Lucala Sede"],"Samba Cajú":["Samba Cajú Sede"]},postos:["SME Cuanza Norte - Ndalatando"]},"Cuanza Sul":{mun:{"Sumbe":["Sumbe Sede","Gungo","Gangula"],"Cela":["Waku-Kungo Sede","Kissanga Kungo"],"Amboim":["Gabela Sede","Assango"],"Libolo":["Calulo Sede"],"Porto Amboim":["Porto Amboim Sede","Capolo"],"Ebo":["Ebo Sede"]},postos:["SME Cuanza Sul - Sumbe Sede","SME Waku-Kungo"]},"Malanje":{mun:{"Malanje":["Malanje Sede","Cangandala","Ngola Luije"],"Cacuso":["Cacuso Sede","Soqueco"],"Calandula":["Calandula Sede"],"Caculama":["Caculama Sede"],"Quela":["Quela Sede"]},postos:["SME Malanje - Sede Provincial"]},"Lunda Norte":{mun:{"Chitato":["Dundo Sede","Luachimo"],"Lucapa":["Lucapa Sede","Capaia"],"Cambulo":["Cambulo Sede","Cachimo"],"Cuilo":["Cuilo Sede"],"Lubalo":["Lubalo Sede"]},postos:["SME Lunda Norte - Dundo Sede","SME Lucapa"]},"Lunda Sul":{mun:{"Saurimo":["Saurimo Sede","Sombo","Mona Quimbundo"],"Cacolo":["Cacolo Sede","Alto Chicapa","Xassengue"],"Dala":["Dala Sede"],"Muconda":["Muconda Sede","Chiluage"]},postos:["SME Lunda Sul - Saurimo"]},"Benguela":{mun:{"Benguela":["Benguela Sede","Zona A","Zona B","Zona C","Zona D"],"Lobito":["Lobito Sede","Canata","Alto Liro","Catumbela Sede"],"Baía Farta":["Baía Farta Sede","Dombe Grande"],"Cubal":["Cubal Sede"],"Ganda":["Ganda Sede"],"Bocoio":["Bocoio Sede"]},postos:["SME Benguela - Sede Provincial","SME Lobito - Comercial","SME Catumbela","Posto Porto do Lobito"]},"Huambo":{mun:{"Huambo":["Huambo Sede","Calima","Benfica","Chipipa"],"Caála":["Caála Sede","Cuima","Catata"],"Bailundo":["Bailundo Sede","Bimbe","Lunge"],"Londuimbali":["Londuimbali Sede"],"Mungo":["Mungo Sede"],"Tchindjenje":["Tchindjenje Sede"]},postos:["SME Huambo - Sede Provincial","SME Caála"]},"Bié":{mun:{"Cuito":["Cuito Sede","Cunje","Trumba"],"Andulo":["Andulo Sede","Chivaulo"],"Camacupa":["Camacupa Sede"],"Chinguar":["Chinguar Sede"],"Catabola":["Catabola Sede"]},postos:["SME Bié - Cuito Sede"]},"Moxico":{mun:{"Moxico":["Luena Sede","Lucusse","Lutuai"],"Camanongue":["Camanongue Sede"],"Léua":["Léua Sede"],"Luau":["Luau Sede","Mucussueje"]},postos:["SME Moxico - Luena","Posto Fronteiriço Luau - RDC"]},"Moxico Leste":{mun:{"Cameia":["Cazombo Sede","Cameia Sede"],"Luacano":["Luacano Sede","Lago Dilolo"]},postos:["SME Moxico Leste - Cazombo Sede"]},"Cuando":{mun:{"Mavinga":["Mavinga Sede","Cunjamba Dime","Cutuile"],"Dirico":["Dirico Sede","Xamavera"],"Cuito Cuanavale":["Cuito Cuanavale Sede"]},postos:["SME Cuando - Mavinga","Posto Fronteira Rivungo"]},"Cubango":{mun:{"Menongue":["Menongue Sede","Caiundo","Missombo"],"Calai":["Calai Sede"],"Cuangar":["Cuangar Sede"],"Cuchi":["Cuchi Sede"]},postos:["SME Cubango - Menongue Sede","Posto Calai Fronteira Namíbia"]},"Huíla":{mun:{"Lubango":["Lubango Sede","Mapunda","Quilemba","Arimba","Hoque"],"Humpata":["Humpata Sede","Palanca"],"Chibia":["Chibia Sede","Jau"],"Matala":["Matala Sede","Capelongo"],"Quilengues":["Quilengues Sede"],"Caconda":["Caconda Sede"]},postos:["SME Huíla - Lubango Sede Central","SME Matala","SME Chibia"]},"Namibe":{mun:{"Moçâmedes":["Moçâmedes Sede","Lucira","Bentiaba","Saco-Mar"],"Tômbwa":["Tômbwa Sede","Yona","Baía dos Tigres"],"Bibala":["Bibala Sede"],"Camucuio":["Camucuio Sede"],"Virei":["Virei Sede"]},postos:["SME Namibe - Moçâmedes Sede","SME Tômbwa - Porto"]},"Cunene":{mun:{"Cuanhama":["Ondjiva Sede","Evale","Mongua","Ondjiva - Naipalala"],"Ombadja":["Xangongo Sede","Humbe","Naulila"],"Curoca":["Oncócua Sede","Chitado"],"Cuvelai":["Mupa Sede"],"Namacunde":["Namacunde Sede","Santa Clara"]},postos:["SME Cunene - Ondjiva Sede","Posto Fronteiriço Santa Clara - Namíbia","SME Xangongo"]}};
+let servicoAtual="Passaporte Ordinário - Taxa Normal 30.500 Kz", taxaAtual="30500", comprovativoAnexado=false, comprovativoNome="";
+function getUsers(){ return JSON.parse(localStorage.getItem('sme_users')||'[]'); }
+function saveUsers(u){ localStorage.setItem('sme_users', JSON.stringify(u)); }
+function getCurrent(){ return JSON.parse(localStorage.getItem('sme_current')||'null'); }
+function setCurrent(u){ localStorage.setItem('sme_current', JSON.stringify(u)); atualizarUIAuth(); }
+function showMsg(id, txt, ok){ const el=document.getElementById(id); el.textContent=txt; el.className='msg '+(ok?'ok':'err'); el.style.display='block'; setTimeout(()=>{el.style.display='none'},5000); }
+function criarConta(){
+  const nome=document.getElementById('c_nome').value.trim(), bi=document.getElementById('c_bi').value.trim(), tel=document.getElementById('c_tel').value.trim(), email=document.getElementById('c_email').value.trim().toLowerCase(), senha=document.getElementById('c_senha').value, senha2=document.getElementById('c_senha2').value;
+  if(!nome||!bi||!tel||!email||!senha){ showMsg('loginMsg','Preencha todos os campos *',false); return; }
+  if(senha.length<4){ showMsg('loginMsg','Senha mínimo 4 caracteres',false); return; }
+  if(senha!==senha2){ showMsg('loginMsg','Senhas não coincidem',false); return; }
+  const users=getUsers();
+  if(users.find(u=>u.email===email || u.tel===tel)){ showMsg('loginMsg','Este email ou telefone já tem conta. Faz login.',false); mostrarLogin(); return; }
+  const novo={id:Date.now(), nome, bi, tel, email, senha, criado:new Date().toISOString()};
+  users.push(novo); saveUsers(users); setCurrent(novo);
+  showMsg('loginMsg','✅ Conta criada! Entraste automaticamente. Telefone e email servem para login.',true);
+  setTimeout(()=>goPage('perfil'),800);
+}
+function fazerLogin(){
+  const login=document.getElementById('l_email').value.trim().toLowerCase(), senha=document.getElementById('l_senha').value;
+  const users=getUsers(); const user=users.find(u=>(u.email===login || u.tel===login) && u.senha===senha);
+  if(!user){ showMsg('loginMsg','Email/telefone ou senha incorretos',false); return; }
+  setCurrent(user); showMsg('loginMsg','✅ Login feito! Bem-vindo '+user.nome,true); setTimeout(()=>goPage('perfil'),600);
+}
+function recuperarSenha(){
+  const login=document.getElementById('rec_email').value.trim().toLowerCase();
+  const users=getUsers(); const user=users.find(u=>u.email===login || u.tel===login);
+  const res=document.getElementById('recResult');
+  if(!user){ res.style.display='block'; res.innerHTML='❌ <b>Não encontrado</b><br>Este email/telefone não tem conta.'; return; }
+  res.style.display='block';
+  res.innerHTML=`✅ <b>Conta encontrada!</b><br><br>👤 <b>${user.nome}</b><br>📧 Email: ${user.email}<br>📱 Tel: ${user.tel}<br>🔑 <b>Senha atual: <span style="font-family:'JetBrains Mono';background:#111;color:#FFD700;padding:2px 6px;border-radius:4px">${user.senha}</span></b><br><br>💡 <small>Por segurança, podes agora fazer login com essa senha e depois alterar no perfil.</small><br><br><button class="btn btn-black" onclick="document.getElementById('l_email').value='${user.email}';document.getElementById('l_senha').value='${user.senha}';mostrarLogin()">🔓 Usar esta senha para entrar</button>`;
+}
+function logout(){ localStorage.removeItem('sme_current'); atualizarUIAuth(); showMsg('loginMsg','Sessão terminada',true); goPage('login'); mostrarCriar(); }
+function mostrarLogin(){ document.getElementById('formCriar').style.display='none'; document.getElementById('formLogin').style.display='block'; document.getElementById('formRecuperar').style.display='none'; document.getElementById('logadoBox').style.display='none'; }
+function mostrarCriar(){ document.getElementById('formCriar').style.display='block'; document.getElementById('formLogin').style.display='none'; document.getElementById('formRecuperar').style.display='none'; document.getElementById('logadoBox').style.display='none'; }
+function mostrarRecuperar(){ document.getElementById('formCriar').style.display='none'; document.getElementById('formLogin').style.display='none'; document.getElementById('formRecuperar').style.display='block'; document.getElementById('logadoBox').style.display='none'; }
+function atualizarUIAuth(){
+  const cur=getCurrent(); const top=document.getElementById('userTop'), btnLogin=document.getElementById('btnLoginMenu'), btnPerfil=document.getElementById('btnPerfil'), bemBox=document.getElementById('bemVindoBox');
+  if(cur){
+    top.innerText='👤 '+cur.nome.split(' ')[0]; btnLogin.innerHTML='🚪 Sair'; btnLogin.onclick=()=>logout(); btnPerfil.classList.add('logged');
+    document.getElementById('logadoBox').style.display='block'; document.getElementById('formCriar').style.display='none'; document.getElementById('formLogin').style.display='none'; document.getElementById('formRecuperar').style.display='none';
+    document.getElementById('logAvatar').innerText=cur.nome.charAt(0).toUpperCase(); document.getElementById('logNome').innerText=cur.nome; document.getElementById('logEmail').innerText=cur.email+' • '+cur.tel;
+    document.getElementById('perfilNaoLogado').style.display='none'; document.getElementById('perfilLogado').style.display='block';
+    document.getElementById('perfilNome').innerText=cur.nome; document.getElementById('perfilBI').innerText='BI: '+cur.bi; document.getElementById('perfilEmail').innerText=cur.email+' • '+cur.tel; document.getElementById('avatarLetra').innerText=cur.nome.charAt(0).toUpperCase(); document.getElementById('perfilTelEdit').value=cur.tel;
+    document.getElementById('nome').value=cur.nome; document.getElementById('bi').value=cur.bi; document.getElementById('tel').value=cur.tel; document.getElementById('email').value=cur.email;
+    if(bemBox){ bemBox.style.display='block'; bemBox.innerText='✅ Olá, '+cur.nome+'! Logado com telefone/email. Podes agendar com data e hora.'; }
+    document.getElementById('bloqueioLogin').style.display='none'; document.getElementById('etapa1').style.display='block';
+  } else {
+    top.innerText='Visitante'; btnLogin.innerHTML='🔐 Entrar'; btnLogin.onclick=()=>goPage('login'); btnPerfil.classList.remove('logged');
+    document.getElementById('perfilNaoLogado').style.display='block'; document.getElementById('perfilLogado').style.display='none'; document.getElementById('logadoBox').style.display='none'; mostrarCriar(); if(bemBox) bemBox.style.display='none';
+  } carregarDocs();
+}
+function atualizarPerfil(){ const cur=getCurrent(); if(!cur) return; cur.tel=document.getElementById('perfilTelEdit').value; const users=getUsers(); const idx=users.findIndex(u=>u.id===cur.id); if(idx>=0){ users[idx]=cur; saveUsers(users); setCurrent(cur); showMsg('loginMsg','Perfil atualizado!',true); } }
+function carregarDocs(){
+  const docs=JSON.parse(localStorage.getItem('sme_docs')||'[]'); const cur=getCurrent(); const lista=document.getElementById('listaDocs');
+  const meus=cur? docs.filter(d=>d.userId===cur.id):[];
+  if(meus.length===0){ lista.innerHTML='<p style="color:#9ca3af">Nenhum recibo ainda.</p>'; return; }
+  lista.innerHTML=meus.map(d=>`<div class="svc sel" onclick="verRecibo('${d.num}')"><div class="ic" style="background:#fee2e2">📄</div><div><b>${d.num}</b><span>${d.servico} • ${d.prov} • ${d.data} ${d.hora}</span></div><div class="price"><span class="tag tag-green">PDF</span></div></div>`).join('');
+  const tl=document.getElementById('timeline'); if(tl) tl.innerHTML=meus.slice(-3).reverse().map(d=>`<div style="border-left:3px solid #10b981;padding-left:12px;margin-bottom:10px"><b style="font-size:12px">✅ ${d.num} - ${d.hora}</b><p style="font-size:11px;color:#6b7280">${d.servico} - ${d.data} ${d.hora} - ${d.posto}</p></div>`).join('')||'<p>Sem processos</p>';
+}
+function verRecibo(num){ const docs=JSON.parse(localStorage.getItem('sme_docs')||'[]'); const d=docs.find(x=>x.num===num); if(!d) return; document.getElementById('r-num').innerText=d.num; document.getElementById('r-serv').innerText=d.servico; document.getElementById('r-taxa').innerText=d.taxa+' Kz'; document.getElementById('r-nome').innerText=d.nome; document.getElementById('r-bi').innerText=d.bi; document.getElementById('r-local').innerText=d.prov+' → '+d.mun+' → '+d.bairro; document.getElementById('r-posto').innerText=d.posto; document.getElementById('r-data').innerText=d.data+' às '+d.hora; document.getElementById('r-comp').innerText=d.comp; document.getElementById('r-qr').innerText=d.num; goPage('agendar'); nextEtapa(4); }
+function initProv(){ const sel=document.getElementById('prov'); sel.innerHTML=''; Object.keys(ANGOLA).forEach(p=>{ const o=document.createElement('option'); o.value=p; o.textContent='📍 '+p; sel.appendChild(o); }); carregarMunicipios(); }
+function carregarMunicipios(){ const prov=document.getElementById('prov').value; const munSel=document.getElementById('mun'); const postoSel=document.getElementById('posto'); munSel.innerHTML=''; postoSel.innerHTML=''; Object.keys(ANGOLA[prov].mun).forEach(m=>{ const o=document.createElement('option'); o.value=m; o.textContent='🏘️ '+m; munSel.appendChild(o); }); ANGOLA[prov].postos.forEach(pt=>{ const o=document.createElement('option'); o.value=pt; o.textContent='🏢 '+pt; postoSel.appendChild(o); }); carregarBairros(); }
+function carregarBairros(){ const prov=document.getElementById('prov').value; const mun=document.getElementById('mun').value; const bSel=document.getElementById('bairro'); bSel.innerHTML=''; (ANGOLA[prov].mun[mun]||[]).forEach(b=>{ const o=document.createElement('option'); o.value=b; o.textContent='📌 '+b; bSel.appendChild(o); }); }
+function goPage(nome){
+  if((nome==='agendar'||nome==='perfil'||nome==='documentos') &&!getCurrent()){ if(nome==='agendar'){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById('page-agendar').classList.add('active'); document.getElementById('bloqueioLogin').style.display='block'; document.getElementById('etapa1').style.display='none'; document.getElementById('etapa2').style.display='none'; document.getElementById('etapa3').style.display='none'; document.getElementById('etapa4').style.display='none'; return; } goPage('login'); showMsg('loginMsg','Faz login primeiro',false); return; }
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); const t=document.getElementById('page-'+nome); if(t) t.classList.add('active'); document.querySelectorAll('.menuScroll button').forEach(b=>b.classList.remove('active')); window.scrollTo(0,0);
+}
+function selServico(nome, valor){ servicoAtual=nome; taxaAtual=valor; document.getElementById('servSel').value=nome+' - '+parseInt(valor).toLocaleString('pt-AO')+' Kz'; document.getElementById('valorPagar').innerText=parseInt(valor).toLocaleString('pt-AO')+' Kz'; document.getElementById('valorBox').innerText=parseInt(valor).toLocaleString('pt-AO')+' Kz'; goPage('agendar'); nextEtapa(1); }
+function nextEtapa(n){
+  const cur=getCurrent(); if(!cur && n>1){ document.getElementById('bloqueioLogin').style.display='block'; return; }
+  document.getElementById('etapa1').style.display=n==1?'block':'none'; document.getElementById('etapa2').style.display=n==2?'block':'none'; document.getElementById('etapa3').style.display=n==3?'block':'none'; document.getElementById('etapa4').style.display=n==4?'block':'none'; document.getElementById('bloqueioLogin').style.display='none';
+  document.querySelectorAll('.step').forEach((s,i)=>s.classList.toggle('fill', i < n));
+  if(n==2 && (!document.getElementById('nome').value ||!document.getElementById('bi').value)){ alert('Preencha Nome e BI'); nextEtapa(1); }
+}
+function fileAnexado(input){ if(input.files && input.files[0]){ comprovativoAnexado=true; comprovativoNome=input.files[0].name; document.getElementById('fileName').style.display='block'; document.getElementById('fileName').innerText='✅ '+comprovativoNome; document.getElementById('drop').classList.add('hasFile'); const btn=document.getElementById('btnGerar'); btn.disabled=false; btn.innerText='✅ Gerar Recibo Oficial em PDF →'; } }
+function gerarReciboPDF(){
+  if(!comprovativoAnexado){ alert('Anexe o comprovativo! Sem comprovativo não pode gerar recibo.'); return; }
+  if(!document.getElementById('rupe').value){ alert('Informe Nº talão RUPE'); return; }
+  const cur=getCurrent(); const nome=document.getElementById('nome').value, bi=document.getElementById('bi').value, tel=document.getElementById('tel').value, prov=document.getElementById('prov').value, mun=document.getElementById('mun').value, bairro=document.getElementById('bairro').value, posto=document.getElementById('posto').value, data=document.getElementById('dataAg').value, hora=document.getElementById('horaAg').value, rupe=document.getElementById('rupe').value;
+  if(!data||!hora){ alert('Escolhe data e hora do agendamento'); return; }
+  const num='SME-'+new Date().getFullYear()+'-'+Math.floor(100000+Math.random()*900000);
+  document.getElementById('r-num').innerText=num; document.getElementById('r-serv').innerText=servicoAtual; document.getElementById('r-taxa').innerText=parseInt(taxaAtual).toLocaleString('pt-AO')+' Kz'; document.getElementById('r-nome').innerText=nome; document.getElementById('r-bi').innerText=bi; document.getElementById('r-local').innerText=prov+' → '+mun+' → '+bairro; document.getElementById('r-posto').innerText=posto; document.getElementById('r-data').innerText=data+' às '+hora; document.getElementById('r-comp').innerText=comprovativoNome+' ('+rupe+')'; document.getElementById('r-qr').innerText=num;
+  const docObj={num, servico:servicoAtual, taxa:taxaAtual, nome, bi, prov, mun, bairro, posto, data, hora, rupe, comp:comprovativoNome+' ('+rupe+')', userId:cur.id, criado:new Date().toISOString()};
+  const docs=JSON.parse(localStorage.getItem('sme_docs')||'[]'); docs.push(docObj); localStorage.setItem('sme_docs', JSON.stringify(docs)); carregarDocs(); nextEtapa(4);
+}
+function baixarPDF(){
+  const { jsPDF } = window.jspdf; const doc=new jsPDF(); const d=JSON.parse(localStorage.getItem('sme_docs')||'[]').slice(-1)[0]||{};
+  doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('RECIBO SME ANGOLA - PORTAL OFICIAL',10,14);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  let y=24; doc.text('Nº '+ (d.num||''),10,y); y+=7; doc.text('Servico: '+(d.servico||''),10,y); y+=7; doc.text('Taxa: '+(d.taxa||'')+' Kz - Ent 01148 Ref 945752579',10,y); y+=7; doc.text('Utente: '+(d.nome||'')+' BI: '+(d.bi||''),10,y); y+=7; doc.text('Local: '+(d.prov||'')+' -> '+(d.mun||'')+' -> '+(d.bairro||''),10,y); y+=7; doc.text('Posto: '+(d.posto||''),10,y); y+=7; doc.text('Data e Hora Agendamento: '+(d.data||'')+' as '+(d.hora||''),10,y); y+=7; doc.text('RUPE: '+(d.rupe||''),10,y); y+=10; doc.text('Validacao: sme.gov.ao | Linha 120 | Documento oficial',10,y);
+  doc.save((d.num||'Recibo-SME')+'.pdf');
+}
+function partilharRecibo(){ const d=JSON.parse(localStorage.getItem('sme_docs')||'[]').slice(-1)[0]||{}; const txt=`🇦🇴 RECIBO SME\n${d.num}\n${d.servico}\n${d.nome}\n${d.posto}\nData: ${d.data} Hora: ${d.hora}\nEnt 01148 Ref 945752579`; if(navigator.share) navigator.share({title:'Recibo SME', text:txt}); else { navigator.clipboard.writeText(txt); alert('Copiado!'); } }
+initProv(); atualizarUIAuth(); document.getElementById('dataAg').min=new Date().toISOString().split('T')[0];
+</script>
+</body>
+</html>

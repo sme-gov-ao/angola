@@ -92,18 +92,18 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 </div>
 <div id="page-servicos" class="page">
 <div class="card"><h2><i style="background:#fee2e2">📘</i> Passaportes</h2>
-<div class="svc" onclick="selServico('Passaporte Electrónico - Taxa Normal 30.500 Kz','30500')"><div class="ic" style="background:#fee2e2">📘</div><div><b>Taxa normal</b><span>45 dias úteis</span></div><div class="price">30.500 Kz</div></div>
-<div class="svc" onclick="selServico('Passaporte De Serviço','30.500')"><div class="ic" style="background:#fef3c7">👶</div><div><b>Urgente</b><span>45.000 Kz</span></div><div class="price">45.000 Kz</div></div>
-<div class="svc" onclick="selServico('Taxa personalizado 72h','50500')"><div class="ic" style="background:#ffedd5">⚡</div><div><b>Urgente 72h</b><span>50.500 Kz</span></div><div class="price">50.500 Kz</div></div>
-<div class="svc" onclick="selServico('Taxa executivo','100.000')"><div class="ic" style="background:#fee2e2">📕</div><div><b>Taxa Executivo</b><span>100.000 Kz</span></div><div class="price">100.000 Kz</div></div>
+<div class="svc" onclick="selServico('Taxa normal','30500')"><div class="ic" style="background:#fee2e2">📘</div><div><b>Taxa normal</b><span>45 dias úteis</span></div><div class="price">30.500 Kz</div></div>
+<div class="svc" onclick="selServico('Taxa urgente','45000')"><div class="ic" style="background:#fef3c7">👶</div><div><b>Taxa urgente</b><span>15 dias úteis</span></div><div class="price">45.000 Kz</div></div>
+<div class="svc" onclick="selServico('Taxa personalizado','70000')"><div class="ic" style="background:#ffedd5">⚡</div><div><b>Taxa Personalizado</b><span>24 horas úteis</span></div><div class="price">70.000 Kz</div></div>
+<div class="svc" onclick="selServico('Taxa executivo','100000')"><div class="ic" style="background:#fee2e2">📕</div><div><b>Taxa Executivo</b><span>2 horas úteis</span></div><div class="price">100.000 Kz</div></div>
 </div>
 <div class="card"><h2><i style="background:#dcfce7">🛂</i> Vistos</h2>
-<div class="svc" onclick="selServico('Visto Turismo','7500')"><div class="ic" style="background:#dcfce7">✈️</div><div><b>Turismo</b></div><div class="price">7.500 Kz</div></div>
-<div class="svc" onclick="selServico('Visto Trabalho','25000')"><div class="ic" style="background:#e0e7ff">💼</div><div><b>Trabalho</b></div><div class="price">25.000 Kz</div></div>
-<div class="svc" onclick="selServico('Visto Residência','35000')"><div class="ic" style="background:#f3e8ff">🏠</div><div><b>Residência</b></div><div class="price">35.000 Kz</div></div>
+<div class="svc" onclick="selServico('Visto Turismo','36000')"><div class="ic" style="background:#dcfce7">✈️</div><div><b>Turismo</b></div><div class="price">36.000 Kz</div></div>
+<div class="svc" onclick="selServico('Visto Trabalho','45000')"><div class="ic" style="background:#e0e7ff">💼</div><div><b>Trabalho</b></div><div class="price">45.000 Kz</div></div>
+<div class="svc" onclick="selServico('Visto Residência','75000')"><div class="ic" style="background:#f3e8ff">🏠</div><div><b>Residência</b></div><div class="price">75.000 Kz</div></div>
 </div>
 </div>
-<div id="page-taxas" class="page"><div class="card"><h2><i style="background:#fef3c7">💳</i> Taxas Oficiais</h2><div class="linhaRec"><b>📘 Passaporte Normal</b><span style="font-weight:800;color:var(--red)">30.500 Kz</span></div><div class="linhaRec"><b>👶 Menor</b><span>15.300 Kz</span></div><div class="notice"><b>🏦 Entidade 01148 • Referência 945 752 579</b><br>ATM > Pagamentos > Pagamentos por Referência<br>Multicaixa Express > Pagamentos > Referência</div></div></div>
+<div id="page-taxas" class="page"><div class="card"><h2><i style="background:#fef3c7">💳</i> Taxas Oficiais</h2><div class="linhaRec"><b>📘 Taxa Normal</b><span style="font-weight:800;color:var(--red)">30.500 Kz</span></div><div class="linhaRec"><b>👶 Executivo</b><span>100.000 Kz</span></div><div class="notice"><b>🏦 Caro(a) utente faça pagamento no ATM ou Multicaixa Express na opção pagamentos por referência</div></div></div>
 <div id="page-login" class="page">
 <div class="card">
 <h2><i style="background:#111;color:#fff">🔐</i> Acesso - Criar Conta / Login / Recuperar</h2>
@@ -154,7 +154,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <label>Hora do Agendamento *</label><select id="horaAg"><option>08:00</option><option>08:30</option><option>09:00</option><option>09:30</option><option>10:00</option><option>10:30</option><option>11:00</option><option>11:30</option><option>12:00</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option></select>
 <div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-white" style="flex:1" onclick="nextEtapa(1)">←</button><button class="btn btn-red" style="flex:2" onclick="nextEtapa(3)">→ Pagamento</button></div></div>
 <div id="etapa3" class="card" style="display:none"><h2><i style="background:#fef3c7">💳</i> Etapa 3 - Pagamento por Referência</h2>
-<div class="notice"><b>Entidade 01148 • Ref 945752579 • Valor <span id="valorPagar">30.500 Kz</span></b><br>ATM: Pagamentos > Referência • Express: Pagamentos > Por Referência</div>
+<div class="notice"><b>Entidade 01148 • Referencia 945752579 • Valor <span id="valorPagar">30.500 Kz</span></b><br>Faça pagamento no ATM Ou Multicaixa Express na opção pagamentos por referência</div>
 <div class="card" style="background:#111;color:#fff;border:none"><div style="display:flex;justify-content:space-between"><span style="font-size:10px;opacity:.6">ENTIDADE</span><b style="font-family:'JetBrains Mono';color:var(--gold)">01148</b></div><div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:10px;opacity:.6">REFERÊNCIA</span><b style="font-family:'JetBrains Mono'">945 752 579</b></div><div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:10px;opacity:.6">VALOR</span><b id="valorBox" style="color:#4ade80">30.500 Kz</b></div></div>
 <label>Anexar Comprovativo * OBRIGATÓRIO - Sem isso não gera recibo</label>
 <div class="drop" id="drop" onclick="document.getElementById('fileComp').click()"><div style="font-size:28px">📎</div><b style="font-size:12px">Clique para anexar talão</b><div id="fileName" style="margin-top:6px;font-size:11px;color:var(--ok);font-weight:800;display:none"></div></div>
@@ -163,7 +163,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-white" style="flex:1" onclick="nextEtapa(2)">←</button><button class="btn btn-red" style="flex:2" id="btnGerar" disabled onclick="gerarReciboPDF()">🔒 Anexe comprovativo para gerar recibo</button></div></div>
 <div id="etapa4" class="card" style="display:none"><h2><i style="background:#e0e7ff">🧾</i> Etapa 4 - Recibo PDF Oficial</h2>
 <div class="reciboBox" id="reciboPrint">
-<div class="reciboTop"><div><h3 style="font-size:13px;font-weight:900">🇦🇴 RECIBO SME ANGOLA</h3><small style="font-size:9px">Portal Oficial • Ent 01148 Ref 945752579</small></div><span class="tag tag-green">CONFIRMADO</span></div>
+<div class="reciboTop"><div><h3 style="font-size:13px;font-weight:900">🇦🇴 RECIBO SME ANGOLA</h3><small style="font-size:9px">Portal Oficial</small></div><span class="tag tag-green">CONFIRMADO</span></div>
 <div class="linhaRec"><b>Nº Recibo</b><span id="r-num" style="font-weight:900;font-family:'JetBrains Mono'"></span></div>
 <div class="linhaRec"><b>Serviço</b><span id="r-serv"></span></div>
 <div class="linhaRec"><b>Taxa</b><span id="r-taxa" style="font-weight:800;color:var(--red)"></span></div>
@@ -174,7 +174,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <div class="linhaRec"><b>Data e Hora Agendamento</b><span id="r-data" style="font-weight:800"></span></div>
 <div class="linhaRec"><b>Pagamento</b><span>01148 / 945752579 Validado ✅</span></div>
 <div class="linhaRec"><b>Comprovativo</b><span id="r-comp"></span></div>
-<div style="display:flex;gap:10px;margin-top:10px"><div style="width:80px;height:80px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:800;text-align:center">QR<br><span id="r-qr" style="color:var(--gold)"></span></div><div style="font-size:10px;color:#6b7280">Pessoal e intransmissível. BI + recibo + RUPE. sme.gov.ao • Linha 120</div></div>
+<div style="display:flex;gap:10px;margin-top:10px"><div style="width:80px;height:80px;background:#111;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:800;text-align:center">QR<br><span id="r-qr" style="color:var(--gold)"></span></div><div style="font-size:10px;color:#6b7280">Pessoal e intransmissível. BI + recibo + comprovativo • Call Center | WhatsApp: 938 510 719.</div></div>
 </div>
 <div style="display:flex;gap:8px;margin-top:10px"><button class="btn btn-black" onclick="baixarPDF()">📄 Baixar PDF</button><button class="btn btn-white" onclick="partilharRecibo()">📤 Partilhar</button></div>
 </div>
@@ -188,7 +188,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 </div>
 </div>
 <div id="page-documentos" class="page"><div class="card"><h2><i style="background:#fef3c7">📁</i> Meus Documentos PDF</h2><div id="listaDocs" style="font-size:12px;color:#6b7280">Faz login e gera recibo.</div></div></div>
-<div class="siteFooter"><h4>🇦🇴 SME Angola Final v3</h4>Entidade 01148 • Ref 945752579 • 21 Províncias • Login por Telefone/Email • Recuperação Senha • Data+hora Agendamento • PDF<br><span style="font-size:10px;opacity:.6">© 2026 MININT - index.html único - Funciona 100% no Acode</span></div>
+<div class="siteFooter"><h4>🇦🇴 CONTACTA-NOS:<Sede: Rua Amilcar Cabral, Maianga, Luanda - Angola<br><span style="font-size:10px;opacity:.6">© 2026 SME - Serviço de Migração e Estrangeiros</span></div>
 </div>
 <div class="footerFixed"><button class="btn btn-white" style="flex:1" onclick="goPage('servicos')">📘 Serviços</button><button class="btn btn-red" style="flex:2" onclick="goPage('agendar')">📅 Agendar 30.500 Kz</button></div>
 <script>

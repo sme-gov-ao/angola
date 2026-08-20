@@ -1,0 +1,19 @@
+# robots.txt para https://sme-gov-ao.github.io/angola/
+User-agent: *
+Allow: /
+
+Sitemap: https://sme-gov-ao.github.io/angola/sitemap.xml
+Sitemap: https://sme-gov-ao.github.io/sitemap.xml
+
+User-agent: Googlebot
+Allow: /angola/
+Allow: /angola/index.html
+Allow: /*.png
+Allow: /*.ico
+Allow: /*.css
+Allow: /*.js
+
+User-agent: Bingbot
+Allow: /angola/
+
+Crawl-delay: 1

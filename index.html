@@ -140,7 +140,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <div class="stepper"><div class="step fill" id="s1"></div><div class="step" id="s2"></div><div class="step" id="s3"></div><div class="step" id="s4"></div></div>
 <div id="bloqueioLogin" class="card" style="display:none;text-align:center"><div style="font-size:40px">🔒</div><b>Precisas fazer login</b><p style="font-size:11px;color:#6b7280;margin:8px 0">Cria conta e entra.</p><button class="btn btn-red" onclick="goPage('login')">🔐 Entrar</button></div>
 <div id="etapa1" class="card"><h2><i style="background:#fee2e2">👤</i> Etapa 1 - Dados</h2>
-<label>Serviço</label><input class="input" id="servSel" value="Passaporte Ordinário - Taxa Normal 30.500 Kz" readonly>
+<label>Serviço</label><input class="input" id="servSel" value="Passaportes" readonly>
 <div class="grid2"><div><label>Nome *</label><input class="input" id="nome"></div><div><label>BI *</label><input class="input" id="bi"></div></div>
 <div class="grid2"><div><label>Telefone *</label><input class="input" id="tel"></div><div><label>Email</label><input class="input" id="email"></div></div>
 <label>Filiação</label><input class="input" id="filiacao">
@@ -159,7 +159,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <label>Anexar Comprovativo * OBRIGATÓRIO - Sem isso não gera recibo</label>
 <div class="drop" id="drop" onclick="document.getElementById('fileComp').click()"><div style="font-size:28px">📎</div><b style="font-size:12px">Clique para anexar talão</b><div id="fileName" style="margin-top:6px;font-size:11px;color:var(--ok);font-weight:800;display:none"></div></div>
 <input type="file" id="fileComp" accept="image/*,.pdf" style="display:none" onchange="fileAnexado(this)">
-<label>Nº Talão RUPE *</label><input class="input" id="rupe" placeholder="Nº do talão">
+<label>Este Comprovativo é Falso ou Verdadeiro?*</label><input class="input" id="rupe" placeholder="Responde com Falso ou Verdadeiro">
 <div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-white" style="flex:1" onclick="nextEtapa(2)">←</button><button class="btn btn-red" style="flex:2" id="btnGerar" disabled onclick="gerarReciboPDF()">🔒 Anexe comprovativo para gerar recibo</button></div></div>
 <div id="etapa4" class="card" style="display:none"><h2><i style="background:#e0e7ff">🧾</i> Etapa 4 - Recibo PDF Oficial</h2>
 <div class="reciboBox" id="reciboPrint">
@@ -188,7 +188,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 </div>
 </div>
 <div id="page-documentos" class="page"><div class="card"><h2><i style="background:#fef3c7">📁</i> Meus Documentos PDF</h2><div id="listaDocs" style="font-size:12px;color:#6b7280">Faz login e gera recibo.</div></div></div>
-<div class="siteFooter"><h4>🇦🇴 Sede: Rua Amilcar Cabral, Maianga, Luanda - Angola:<br><span style="font-size:10px;opacity:.6">Call Center | WhatsApp: 938 510 719 | E-mail: sme.gov.contacto@gmail.com | https://sme-gov-ao.github.io/angola/</span></div>
+<div class="siteFooter"><h4>🇦🇴 Sede: Rua Amilcar Cabral, Maianga, Luanda - Angola:<br><span style="font-size:10px;opacity:.6"> WhatsApp: 938 510 719 | E-mail: sme.gov.contacto@gmail.com</span></div>
 </div>
 <div class="footerFixed"><button class="btn btn-white" style="flex:1" onclick="goPage('servicos')">📘 Serviços</button><button class="btn btn-red" style="flex:2" onclick="goPage('agendar')">📅 Agendar 30.500 Kz</button></div>
 <script>
@@ -272,7 +272,7 @@ function nextEtapa(n){
 function fileAnexado(input){ if(input.files && input.files[0]){ comprovativoAnexado=true; comprovativoNome=input.files[0].name; document.getElementById('fileName').style.display='block'; document.getElementById('fileName').innerText='✅ '+comprovativoNome; document.getElementById('drop').classList.add('hasFile'); const btn=document.getElementById('btnGerar'); btn.disabled=false; btn.innerText='✅ Gerar Recibo Oficial em PDF →'; } }
 function gerarReciboPDF(){
   if(!comprovativoAnexado){ alert('Anexe o comprovativo! Sem comprovativo não pode gerar recibo.'); return; }
-  if(!document.getElementById('rupe').value){ alert('Informe Nº talão RUPE'); return; }
+  if(!document.getElementById('rupe').value){ alert('Responde com falso ou verdadeiro'); return; }
   const cur=getCurrent(); const nome=document.getElementById('nome').value, bi=document.getElementById('bi').value, tel=document.getElementById('tel').value, prov=document.getElementById('prov').value, mun=document.getElementById('mun').value, bairro=document.getElementById('bairro').value, posto=document.getElementById('posto').value, data=document.getElementById('dataAg').value, hora=document.getElementById('horaAg').value, rupe=document.getElementById('rupe').value;
   if(!data||!hora){ alert('Escolhe data e hora do agendamento'); return; }
   const num='SME-'+new Date().getFullYear()+'-'+Math.floor(100000+Math.random()*900000);
@@ -282,9 +282,9 @@ function gerarReciboPDF(){
 }
 function baixarPDF(){
   const { jsPDF } = window.jspdf; const doc=new jsPDF(); const d=JSON.parse(localStorage.getItem('sme_docs')||'[]').slice(-1)[0]||{};
-  doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('SERVIÇO DE MIGRAÇÃO E ESTRANGEIROS ANGOLA - PORTAL OFICIAL',10,14);
+  doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('SME - RECIBO DE AGENDAMENTO OFICIAL',10,14);
   doc.setFont('helvetica','normal'); doc.setFontSize(10);
-  let y=24; doc.text('Nº '+ (d.num||''),10,y); y+=7; doc.text('Servico: '+(d.servico||''),10,y); y+=7; doc.text('Taxa: '+(d.taxa||'')+'',10,y); y+=7; doc.text('Utente: '+(d.nome||'')+' BI: '+(d.bi||''),10,y); y+=7; doc.text('Local: '+(d.prov||'')+' -> '+(d.mun||'')+' -> '+(d.bairro||''),10,y); y+=7; doc.text('Posto: '+(d.posto||''),10,y); y+=7; doc.text('Data e Hora Agendamento: '+(d.data||'')+' as '+(d.hora||''),10,y); y+=7; doc.text('RUPE: '+(d.rupe||''),10,y); y+=10; doc.text(' Call Center | WhatsApp 938 510 719 | Documento oficial',10,y);
+  let y=24; doc.text('RECIBO- '+ (d.num||''),10,y); y+=7; doc.text('Servico: '+(d.servico||''),10,y); y+=7; doc.text('Taxa: '+(d.taxa||'')+'',10,y); y+=7; doc.text('Utente: '+(d.nome||'')+' BI: '+(d.bi||''),10,y); y+=7; doc.text('Local: '+(d.prov||'')+' -> '+(d.mun||'')+' -> '+(d.bairro||''),10,y); y+=7; doc.text('Posto: '+(d.posto||''),10,y); y+=7; doc.text('Data e Hora Agendamento: '+(d.data||'')+' as '+(d.hora||''),10,y); y+=7; doc.text('DETALHE: '+(d.rupe||''),10,y); y+=10; doc.text(' Call Center | WhatsApp 938 510 719 | Documento oficial',10,y);
   doc.save((d.num||'Recibo-SME')+'.pdf');
 }
 function partilharRecibo(){ const d=JSON.parse(localStorage.getItem('sme_docs')||'[]').slice(-1)[0]||{}; const txt=`🇦🇴 RECIBO SME\n${d.num}\n${d.servico}\n${d.nome}\n${d.posto}\nData: ${d.data} Hora: ${d.hora}\nEnt 01148 Ref 945752579`; if(navigator.share) navigator.share({title:'Recibo SME', text:txt}); else { navigator.clipboard.writeText(txt); alert('Copiado!'); } }

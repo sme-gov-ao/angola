@@ -85,7 +85,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <div class="wrap">
 <div id="page-inicio" class="page active">
 <div class="card" style="background:linear-gradient(135deg,#111 0%,#2a0a0a 100%);color:#fff;border:none">
-<div style="display:flex;gap:12px"><div style="font-size:38px">🛡️</div><div><b style="font-size:18px">Campanha Nacional de Emissão de Passaporte - 2026</b><p style="font-size:11px;opacity:.8;margin-top:4px;line-height:1.4">A campanha entra em vigor apartir do dia 25 de Agosto, e termina dia 25 de Setembro de 2026</p></div></div>
+<div style="display:flex;gap:12px"><div style="font-size:38px">🛡️</div><div><b style="font-size:18px">Campanha Nacional de Emissão de Passaporte Electrónico - 2026</b><p style="font-size:11px;opacity:.8;margin-top:4px;line-height:1.4">A campanha entra em vigor apartir do dia 25 de Agosto, e termina dia 25 de Setembro de 2026</p></div></div>
 <div id="bemVindoBox" class="msg ok" style="margin-top:12px;background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.3);color:#d1fae5;display:none"></div>
 </div>
 <div class="card"><h2><i style="background:#fee2e2">🔥</i> Começar</h2><div class="grid2"><button class="btn btn-black" onclick="goPage('login')">🔐 Criar Conta / Login</button><button class="btn btn-red" onclick="goPage('agendar')">📅 Agendar 30.500 Kz</button></div></div>
@@ -163,7 +163,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 <div style="display:flex;gap:8px;margin-top:12px"><button class="btn btn-white" style="flex:1" onclick="nextEtapa(2)">←</button><button class="btn btn-red" style="flex:2" id="btnGerar" disabled onclick="gerarReciboPDF()">🔒 Anexe comprovativo para gerar recibo</button></div></div>
 <div id="etapa4" class="card" style="display:none"><h2><i style="background:#e0e7ff">🧾</i> Etapa 4 - Recibo PDF Oficial</h2>
 <div class="reciboBox" id="reciboPrint">
-<div class="reciboTop"><div><h3 style="font-size:13px;font-weight:900">🇦🇴 RECIBO SME ANGOLA</h3><small style="font-size:9px">Portal Oficial</small></div><span class="tag tag-green">CONFIRMADO</span></div>
+<div class="reciboTop"><div><h3 style="font-size:13px;font-weight:900">🇦🇴 SERVIÇO DE MIGRAÇÃO E ESTRANGEIROS</h3><small style="font-size:9px">Portal Oficial</small></div><span class="tag tag-green">CONFIRMADO</span></div>
 <div class="linhaRec"><b>Nº Recibo</b><span id="r-num" style="font-weight:900;font-family:'JetBrains Mono'"></span></div>
 <div class="linhaRec"><b>Serviço</b><span id="r-serv"></span></div>
 <div class="linhaRec"><b>Taxa</b><span id="r-taxa" style="font-weight:800;color:var(--red)"></span></div>
@@ -188,7 +188,7 @@ label{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercas
 </div>
 </div>
 <div id="page-documentos" class="page"><div class="card"><h2><i style="background:#fef3c7">📁</i> Meus Documentos PDF</h2><div id="listaDocs" style="font-size:12px;color:#6b7280">Faz login e gera recibo.</div></div></div>
-<div class="siteFooter"><h4>🇦🇴 CONTACTA-NOS:<Sede: Rua Amilcar Cabral, Maianga, Luanda - Angola<br><span style="font-size:10px;opacity:.6">© 2026 SME - Serviço de Migração e Estrangeiros</span></div>
+<div class="siteFooter"><h4>🇦🇴 Sede: Rua Amilcar Cabral, Maianga, Luanda - Angola:<br><span style="font-size:10px;opacity:.6">Call Center | WhatsApp: 938 510 719 | E-mail: sme.gov.contacto@gmail.com | https://sme-gov-ao.github.io/angola/</span></div>
 </div>
 <div class="footerFixed"><button class="btn btn-white" style="flex:1" onclick="goPage('servicos')">📘 Serviços</button><button class="btn btn-red" style="flex:2" onclick="goPage('agendar')">📅 Agendar 30.500 Kz</button></div>
 <script>
@@ -282,9 +282,9 @@ function gerarReciboPDF(){
 }
 function baixarPDF(){
   const { jsPDF } = window.jspdf; const doc=new jsPDF(); const d=JSON.parse(localStorage.getItem('sme_docs')||'[]').slice(-1)[0]||{};
-  doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('RECIBO SME ANGOLA - PORTAL OFICIAL',10,14);
+  doc.setFont('helvetica','bold'); doc.setFontSize(14); doc.text('SERVIÇO DE MIGRAÇÃO E ESTRANGEIROS ANGOLA - PORTAL OFICIAL',10,14);
   doc.setFont('helvetica','normal'); doc.setFontSize(10);
-  let y=24; doc.text('Nº '+ (d.num||''),10,y); y+=7; doc.text('Servico: '+(d.servico||''),10,y); y+=7; doc.text('Taxa: '+(d.taxa||'')+' Kz - Ent 01148 Ref 945752579',10,y); y+=7; doc.text('Utente: '+(d.nome||'')+' BI: '+(d.bi||''),10,y); y+=7; doc.text('Local: '+(d.prov||'')+' -> '+(d.mun||'')+' -> '+(d.bairro||''),10,y); y+=7; doc.text('Posto: '+(d.posto||''),10,y); y+=7; doc.text('Data e Hora Agendamento: '+(d.data||'')+' as '+(d.hora||''),10,y); y+=7; doc.text('RUPE: '+(d.rupe||''),10,y); y+=10; doc.text('Validacao: sme.gov.ao | Linha 120 | Documento oficial',10,y);
+  let y=24; doc.text('Nº '+ (d.num||''),10,y); y+=7; doc.text('Servico: '+(d.servico||''),10,y); y+=7; doc.text('Taxa: '+(d.taxa||'')+'',10,y); y+=7; doc.text('Utente: '+(d.nome||'')+' BI: '+(d.bi||''),10,y); y+=7; doc.text('Local: '+(d.prov||'')+' -> '+(d.mun||'')+' -> '+(d.bairro||''),10,y); y+=7; doc.text('Posto: '+(d.posto||''),10,y); y+=7; doc.text('Data e Hora Agendamento: '+(d.data||'')+' as '+(d.hora||''),10,y); y+=7; doc.text('RUPE: '+(d.rupe||''),10,y); y+=10; doc.text(' Call Center | WhatsApp 938 510 719 | Documento oficial',10,y);
   doc.save((d.num||'Recibo-SME')+'.pdf');
 }
 function partilharRecibo(){ const d=JSON.parse(localStorage.getItem('sme_docs')||'[]').slice(-1)[0]||{}; const txt=`🇦🇴 RECIBO SME\n${d.num}\n${d.servico}\n${d.nome}\n${d.posto}\nData: ${d.data} Hora: ${d.hora}\nEnt 01148 Ref 945752579`; if(navigator.share) navigator.share({title:'Recibo SME', text:txt}); else { navigator.clipboard.writeText(txt); alert('Copiado!'); } }

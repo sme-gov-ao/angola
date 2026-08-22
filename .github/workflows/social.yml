@@ -1,1 +1,42 @@
+name: SME Angola - Auto Social Gratis
+on:
+  push:
+    branches: [ main, principal ]
+  workflow_dispatch:
 
+jobs:
+  social-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Post Facebook e Instagram pronto
+        run: |
+          echo "🚨 SME ANGOLA - APP OFICIAL ATUALIZADO!"
+          echo ""
+          echo "✅ Novo agendamento de passaporte"
+          echo "✅ Vistos online"
+          echo "✅ 21 províncias"
+          echo ""
+          echo "Baixe GRÁTIS:"
+          echo "https://sme-gov-ao.github.io/angola/"
+          echo ""
+          echo "#SMEAngola #PassaporteAngola"
+          
+          cat > mensagem-facebook.txt << 'EOF'
+          🚨 SME ANGOLA - APP OFICIAL ATUALIZADO!
+          
+          ✅ Agendamento de passaporte com hora marcada
+          ✅ Vistos para estrangeiros
+          ✅ Funciona em todo Angola
+          ✅ Funciona offline
+          
+          Baixe agora GRÁTIS:
+          https://sme-gov-ao.github.io/angola/
+          
+          #SMEAngola #Passaporte #MININT #Angola
+          EOF
+          
+          echo "--- MENSAGEM PRONTA PARA FACEBOOK ---"
+          cat mensagem-facebook.txt
